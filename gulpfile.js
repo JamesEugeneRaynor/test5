@@ -33,13 +33,14 @@ gulp.task('watch', function() {
 
   watch('./app/styles/**/*.css', function() {
       console.log('css changed, yay!');
-      return gulp.src('./app/styles/styles.css')
+      gulp.src('./app/styles/styles.css')
         .pipe(postcss([cssimport, nested, cssvars, autoprefixer]))
-        .pipe(gulp.dest('./app/temp/styles'));
+        .pipe(gulp.dest('./app/temp/styles')); 
+
+      return gulp.src('./app/temp/styles/styles.css')
+          .pipe(sync.stream());
         }); 
+        
   });
 
-  gulp.task('cssInject', function() {
-    return gulp.src('./app/temp/styles/styles.css')
-      .pipe(sync.stream());
-  });
+  
