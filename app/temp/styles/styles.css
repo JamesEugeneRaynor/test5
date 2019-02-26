@@ -14,16 +14,34 @@
 }
 .large-hero__title {
     font-weight: 300;   
-    color:#2f5572;
-    font-size: 4.8rem;
+    color: #2f5572;
+    font-size: 2.4rem;
     margin: 0;
+
+
 }
 .large-hero__subtitle {
     font-weight: 300;   
-    color:#2f5572;
-    font-size: 2.8rem;
-    margin: 0;
+    color: #2f5572;
+    font-size: 1.1rem;
+    margin: 0;   
+    
+
 }
+@media (min-width: 530px) {
+.large-hero__subtitle {
+        font-size:4.8rem   
+    
+
+}
+    }
+@media (min-width: 830px) {
+.large-hero__subtitle {
+        font-size:6.8rem   
+    
+
+}
+    }
 .large-hero__description {
     color: #fff;
     font-size: 1.875rem;
@@ -33,6 +51,10 @@
     margin-left: auto;
     margin-right: auto;
 
+}
+.wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .btn {
 background-color: #2f5572;
@@ -334,4 +356,5 @@ template {
 [hidden] {
   display: none;
 }
+
 

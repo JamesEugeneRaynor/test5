@@ -6,16 +6,13 @@ var cssvars = require('postcss-simple-vars');
 var nested = require('postcss-nested');
 var cssimport = require('postcss-import');
 var sync = require('browser-sync').create();
+var mixins = require('postcss-mixins');
 
+//tohle musi pryc
 
 gulp.task('default', function() {
   console.log('defaultni gulp task');
 });
-
-gulp.task('html', function() {
-console.log('imagine something');
-});
-
 
 gulp.task('watch', function() {
 
@@ -32,11 +29,21 @@ gulp.task('watch', function() {
     });
 
   watch('./app/styles/**/*.css', function() {
-      console.log('css changed, yay!');
+      // kontrolní hláška
+      console.log('css chnged, yay!');
+      // vezmi tenhle css soubor
       gulp.src('./app/styles/styles.css')
-        .pipe(postcss([cssimport, nested, cssvars, autoprefixer]))
+      // protahni ho timhle postcss - popasuj se s vecma jako: import, nested css, css promene, autoprefixer
+        .pipe(postcss([mixins, cssimport, nested, cssvars, autoprefixer]))
+      // nezpanikar, kdyz se pripadne objevi nejaka chyba
+        .on('error', function(chybka) {
+          console.log(chybka.toString());
+          this.emit('end');
+        })
+      // a uloz to cssko sem
         .pipe(gulp.dest('./app/temp/styles')); 
 
+      // vem to cssko a automaticky ho promitni do prohlizece  
       return gulp.src('./app/temp/styles/styles.css')
           .pipe(sync.stream());
         }); 
